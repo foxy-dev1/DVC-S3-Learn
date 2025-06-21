@@ -1,0 +1,10 @@
+1) add all folders setup all py files and push to github
+
+2) setup pipeline using dvc
+
+    1 - create a dcv.yaml file
+    2 - initilaze the dvc repo using dvc init 
+    3 - dvc repro to run the yaml file
+    4 - dvc dag to visualize the flow
+
+3) commit the dvc lock file to github
