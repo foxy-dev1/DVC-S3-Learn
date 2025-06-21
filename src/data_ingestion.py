@@ -2,6 +2,7 @@ import pandas as pd
 import os
 from sklearn.model_selection import train_test_split
 import logging
+import yaml
 
 log_dir = "logs"
 os.makedirs(log_dir,exist_ok=True)
@@ -24,6 +25,22 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
+def load_params(params_path):
+
+    try:
+        with open(params_path,"r") as file:
+            params = yaml.safe_load(file)
+        logger.debug("params received from %s",params_path)
+        return params
+    except FileNotFoundError:
+        logger.error("file not found %s",params_path)
+        raise
+    except yaml.YAMLError as e:
+        logger.error("yaml error %s",e)
+
+    except Exception as e:
+        logger.error("error occured: %s",e)
+        raise
 
 
 def load_data(data_url):
@@ -74,7 +91,8 @@ def save_data(train_data,test_data,data_path):
 
 def main():
     try:
-        test_size = 0.2
+        params = load_params("./params.yaml")
+        test_size = params["data_ingestion"]["test_size"]
         data_path = 'https://raw.githubusercontent.com/vikashishere/Datasets/main/spam.csv'
         df = load_data(data_url=data_path)
         final_df = preprocess_data(df)

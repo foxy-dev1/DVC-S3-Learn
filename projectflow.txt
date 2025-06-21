@@ -8,3 +8,8 @@
     4 - dvc dag to visualize the flow
 
 3) commit the dvc lock file to github
+
+4) make a params.yaml file then import yaml in py files to load params in it
+    - also add params in dvc.yaml
+    - dvc repro 
+    - push to github
