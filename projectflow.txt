@@ -13,3 +13,6 @@
     - also add params in dvc.yaml
     - dvc repro 
     - push to github
+
+5) import dvclive then add the code block 
+    - dvc exp run to run the 

@@ -14,7 +14,7 @@ stages:
     deps:
     - data/raw
     - src/data_preprocessing.py
-    
+
 
     outs:
     - data/interim
@@ -41,7 +41,7 @@ stages:
 
     outs:
     - models/model.pkl
-    
+
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
@@ -49,3 +49,10 @@ stages:
     - src/model_evaluation.py
     metrics:
     - reports/metrics.json
+params:
+- dvclive/params.yaml
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step
